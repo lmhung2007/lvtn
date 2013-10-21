@@ -1,4 +1,3 @@
-#abbreviation	meaning
 ko	không
 kg	không
 k	không

@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
-encoding//src/cse/om/dict.txt=UTF-8
+encoding//resources/dictionary.txt=UTF-8
+encoding//src/cse/om/spellchecker/Dictionary.java=UTF-8
+encoding//src/cse/om/test/Test.java=UTF-8
