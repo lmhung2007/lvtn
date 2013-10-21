@@ -1,0 +1,38 @@
+#abbreviation	meaning
+ko	không
+kg	không
+k	không
+hok	không
+hông	không
+nc	nói chuyện
+mn	mọi người
+ntn	như thế nào
+ng	người
+bt	bình thường
+đc	được
+muh	mà
+moh	mà
+mah	mà
+ik	đi
+jh	đi
+jk	đi
+roài	rồi
+ròy	rồi
+rùi	rồi
+goy	rồi
+h	giờ
+jờ	giờ
+zữ	dữ
+dzữ	dữ
+thoy	thôi
+hoy	thôi
+thoai	thôi
+oy	ơi
+bik	biết
+bít	biết
+pit	biết
+pik	biết
+choy	trời
+chài	trời
+troy	trời
+mềnh	mình
