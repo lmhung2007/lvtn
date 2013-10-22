@@ -10,13 +10,18 @@ import java.util.Map;
 
 public class Dictionary {
 	
-	private final String FILEPATH = "resources/dictionary.txt";
-	Map<String, String> dict;
-
-	public Dictionary() throws IOException {
+	private final static String FILEPATH = "resources/dictionary.txt";
+	static Map<String, String> dict;
+	
+	static {
 		dict = new HashMap<>();
-		readDictionaryFromFile(FILEPATH);
-	}
+		try {
+			readDictionaryFromFile(FILEPATH);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
 	
 	@SuppressWarnings("unused")
 	private String changeProject(String currentPath, String newProject) {
@@ -24,7 +29,7 @@ public class Dictionary {
 		return currentPath.substring(0, i + 1) + newProject;
 	}
 	
-	private void readDictionaryFromFile(String filePath) throws IOException {
+	private static void readDictionaryFromFile(String filePath) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(
 				new FileInputStream(FILEPATH), "UTF-8"));
 		while (br.ready()) {
@@ -36,7 +41,7 @@ public class Dictionary {
 		br.close();
 	}
 
-	public String getDefination(String word) {
+	public static String getDefination(String word) {
 		if (dict.containsKey(word))
 			return dict.get(word);
 		else
