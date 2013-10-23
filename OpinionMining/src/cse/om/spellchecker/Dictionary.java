@@ -15,6 +15,7 @@ public class Dictionary {
 	private final static String CHARSETPATH = "resources/vietcharset.txt";
 	private static Map<String, String> dict;
 	private static Set<Character> charSet;
+	private static Set<Character> vowels, consonants;
 
 	static {
 		try {
@@ -52,14 +53,28 @@ public class Dictionary {
 	private static void readCharSetFromFile(String filePath) throws IOException {
 		String[] lines = UTF8File.getAllLines(CHARSETPATH);
 		charSet = new HashSet<>();
-		for (String line : lines) {
+		vowels = new HashSet<>();
+		consonants = new HashSet<>();
+		for (int i = 0; i < lines.length; ++i) {
+			String line = lines[i];
 			for (char c : line.toCharArray())
-				if (c != ' ' && c != '\t')
+				if (c != ' ' && c != '\t') {
 					charSet.add(c);
+					if (i == 0) vowels.add(c);
+					else if (i == 1) consonants.add(c);
+				}
 		}
 	}
 	
 	public static boolean isVietnameseCharacter(char c) {
 		return charSet.contains(c);
+	}
+	
+	public static boolean isVowel(char c) {
+		return vowels.contains(c);
+	}
+	
+	public static boolean isConsonant(char c) {
+		return consonants.contains(c);
 	}
 }

@@ -3,6 +3,7 @@ kg	không
 k	không
 hok	không
 hông	không
+hem	không
 nc	nói chuyện
 mn	mọi người
 ntn	như thế nào
@@ -35,3 +36,13 @@ choy	trời
 chài	trời
 troy	trời
 mềnh	mình
+nhìu	nhiều
+tiu	tiêu
+thíu	thiếu
+thía	thấy
+ghia	ghê
+fởi	phải
+mún	muốn
+từn	tuần
+chủn	chuẩn
+lun	luôn

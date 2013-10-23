@@ -3,6 +3,7 @@
 	<name>OpinionMining</name>
 	<comment></comment>
 	<projects>
+		<project>vnTagger</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
