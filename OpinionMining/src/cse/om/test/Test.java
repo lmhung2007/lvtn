@@ -7,6 +7,7 @@ import java.util.List;
 import vn.hus.nlp.tagger.VietnameseMaxentTagger;
 import cse.om.spellchecker.Checker;
 import cse.om.spellchecker.Dictionary;
+import cse.om.vswn.VietSentiWordNet;
 import edu.stanford.nlp.ling.WordTag;
 
 public class Test {
@@ -32,6 +33,7 @@ public class Test {
 		for (String sentence : sentences) {
 			try {
 				List<WordTag> list = tagger.tagText2(Checker.correctSentence(sentence.toLowerCase()));
+				String[] a = tagger.tagText3(Checker.correctSentence(sentence.toLowerCase()));
 				StringBuilder sb = new StringBuilder();
 				for (WordTag wt : list) {
 					sb.append(wt.word().replaceAll(" ", "_") + "/" + wt.tag() + " ");
@@ -41,6 +43,7 @@ public class Test {
 				e.printStackTrace();
 			}
 		}
+		
 		out.close();
 	}
 
