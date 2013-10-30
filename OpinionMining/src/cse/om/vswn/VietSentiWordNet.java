@@ -49,10 +49,10 @@ public class VietSentiWordNet {
 			for (String w : words) {
 				if (w.contains("#")) {
 					String[] w_n = (prev + w).split("#");
-					if (w_n.length < 2) {
-						System.out.println(w);
-					}
 					w_n[0] += "#" + data[0];
+					if (w_n[0].equals("vui#a")) {
+						prev = "";
+					}
 					prev = "";
 
 					int index = Integer.parseInt(w_n[1]) - 1;
@@ -104,7 +104,7 @@ public class VietSentiWordNet {
 	}
 
 	public static Sensitivity extract(String word, String pos) {
-		return extract(word + "#" + pos);
+		return extract(word.toLowerCase() + "#" + pos.toLowerCase());
 	}
 	
 	public static Sensitivity extract(String word) {
@@ -115,7 +115,7 @@ public class VietSentiWordNet {
 			return Sensitivity.NOT_DETERMINED;
 	}
 	
-	public enum Sensitivity {
+	public static enum Sensitivity {
 		
 		STRONG_POSITIVE	( 3, "strong_positive", "strong positive"),
 		POSITIVE		( 2, "positive", "positive"),
