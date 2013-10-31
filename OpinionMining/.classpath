@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="D:/LVTN/lvtn/vnTagger/vn.hus.nlp.tagger-4.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/LVTN/lvtn/vnTagger/vn.hus.nlp.tagger-4.2.0.jar" sourcepath="D:/LVTN/lvtn/vnTagger"/>
 	<classpathentry kind="lib" path="D:/LVTN/lvtn/vnTagger/lib/commons-cli-1.2.jar"/>
 	<classpathentry kind="lib" path="D:/LVTN/lvtn/vnTagger/lib/edu.stanford.nlp.tagger-2.0.jar"/>
 	<classpathentry kind="lib" path="D:/LVTN/lvtn/vnTagger/lib/vn.hus.nlp.fsm-1.0.0.jar"/>

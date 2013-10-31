@@ -3,20 +3,27 @@ package cse.om.vswn;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+import cse.om.util.UTF8File;
+
 public class VietSentiWordNet {
 
 	private static final String _pathToVSWN = "resources/VietSentiWordnet_ver1.0.txt";
+	private static final String _pathToNegativeWord = "resources/negative.txt";
 	private static Map<String, Sensitivity> _dict;
+	private static Set<String> _negativeWord;
 
 	static {
 		try {
 			init();
+			readNegativeWord();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,15 +103,24 @@ public class VietSentiWordNet {
 			else if (score <= -0.75)
 				s = Sensitivity.STRONG_NEGATIVE;
 			else
-				s = Sensitivity.NOT_DETERMINED;
+				s = Sensitivity.NORMAL;
 			_dict.put(word, s);
 		}
 
 		csv.close();
 	}
 
+	private static void readNegativeWord() throws IOException {
+		_negativeWord = new HashSet<>();
+		String[] words = UTF8File.getAllLines(_pathToNegativeWord);
+		for (String w : words) {
+			if (w.length() > 0)
+				_negativeWord.add(w);
+		}
+	}
+
 	public static Sensitivity extract(String word, String pos) {
-		return extract(word.toLowerCase() + "#" + pos.toLowerCase());
+		return extract(word + "#" + pos);
 	}
 	
 	public static Sensitivity extract(String word) {
@@ -115,15 +131,34 @@ public class VietSentiWordNet {
 			return Sensitivity.NOT_DETERMINED;
 	}
 	
+	public static Map<String, Sensitivity> extract(String[] words) {
+		Map<String, Sensitivity> map = new HashMap<>();
+		String prev = "";
+		for (String word : words) {
+			String[] w = word.split("#");
+			Sensitivity senti = extract(word);
+			if (senti != Sensitivity.NOT_DETERMINED) {
+				if (_negativeWord.contains(prev)) {
+					map.put(prev + " " + w[0], senti.getOpposite());
+				} else {
+					map.put(w[0], senti);
+				}
+			}
+			prev = w[0];
+		}
+		return map;
+	}
+	
 	public static enum Sensitivity {
 		
 		STRONG_POSITIVE	( 3, "strong_positive", "strong positive"),
 		POSITIVE		( 2, "positive", "positive"),
 		WEAK_POSITIVE	( 1, "weak_positive", "weak positive"),
-		NOT_DETERMINED	( 0, "not_determined", "not determined"),
+		NORMAL			( 0, "normal", "normal"),
 		WEAK_NEGATIVE	(-1, "weak_negative", "weak negative"),
 		NEGATIVE		(-2, "negative", "negative"),
-		STRONG_NEGATIVE	(-3, "strong_negative", "strong negative");
+		STRONG_NEGATIVE	(-3, "strong_negative", "strong negative"),
+		NOT_DETERMINED	(-4, "not_determined", "not determined");
 		
 		private int code;
 		private String label;
@@ -145,6 +180,25 @@ public class VietSentiWordNet {
 		
 		public String getDescription() {
 			return description;
+		}
+		
+		public Sensitivity getOpposite() {
+			switch (this) {
+			case NEGATIVE:
+				return POSITIVE;
+			case POSITIVE:
+				return NEGATIVE;
+			case STRONG_NEGATIVE:
+				return STRONG_POSITIVE;
+			case STRONG_POSITIVE:
+				return STRONG_NEGATIVE;
+			case WEAK_NEGATIVE:
+				return WEAK_POSITIVE;
+			case WEAK_POSITIVE:
+				return WEAK_NEGATIVE;
+			default:
+				return NORMAL;
+			}
 		}
 	}
 }

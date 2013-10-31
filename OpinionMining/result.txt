@@ -1,3 +1,9 @@
-thích: strong positive
+chả thích: strong negative
+không dã_man: strong positive
+không thích: strong negative
+đẹp: normal
+khiêm_tốn: normal
+đẹp: normal
 duyên_dáng: strong positive
+xinh_đẹp: strong positive
 vui_mừng: positive
