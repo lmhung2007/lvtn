@@ -1,9 +1,14 @@
 chả thích: strong negative
-không dã_man: strong positive
+dã_man: strong negative
 không thích: strong negative
 đẹp: normal
 khiêm_tốn: normal
-đẹp: normal
+khiêm_tốn: normal
+vui_mừng: positive
 duyên_dáng: strong positive
 xinh_đẹp: strong positive
-vui_mừng: positive
+đẹp: normal
+sợ_hãi: strong negative
+sợ_hãi: strong negative
+xấu: weak negative
+đẹp: normal
