@@ -1,0 +1,56 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fbcraw;
+
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.JavaScriptPage;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.util.Cookie;
+import java.io.IOException;
+
+/**
+ *
+ * @author nghia
+ */
+public class FBCraw {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws IOException {
+        // TODO code application logic here
+        FBCraw fbc = new FBCraw();
+        WebClient wc = new WebClient(BrowserVersion.FIREFOX_10);
+        fbc.addManualCookie(wc);
+        fbc.getFriendList(wc, "truongtrnghia", 0);
+    }
+    
+    public String getFriendList(WebClient wc, String userid, int offset) throws IOException {
+        //String urlFormat = "http://www.facebook.com/ajax/browser/list/allfriends/?uid=%s&infinitescroll=1&location=friends_tab_tl&start=%s&__user=1043357436&__a=1&__dyn=798aD5z5ynU&__req=p";
+        //String urlFormat = "https://m.facebook.com/profile.php?v=friends&mutual&id=100004078245066&startindex=24&__ajax__=";
+        String urlFormat = "https://m.facebook.com/profile.php?v=friends&mutual&id=%s&startindex=%s&__ajax__=";
+        //urlFormat = String.format(urlFormat, type, userid, offset);
+        urlFormat = String.format(urlFormat, userid, offset);
+        HtmlPage page  = wc.getPage(urlFormat);
+        //HtmlPage page = wc.getPage("https://m.facebook.com/thuyduong.candy?v=friends");//String.format(urlFormat, username));
+        //List<?> allDiv = page.getByXPath("//div");
+        //System.out.println(allDiv);
+        //System.out.println(page.getContent());
+        System.out.println(page.asXml());
+        return null;//page.getContent();
+    }
+        public void addManualCookie(WebClient wc) {
+        //String cookieString = "datr=sKLnUKFbM9eMQxr2CXxqEldL; fr=0SaBEtKnrJIwXY7r6.AWVHKGVIv-iBQQ2A_BYNsv5BMAs.BRLiKo.wN.AWVoBRZ9; lu=wgrZRDl2z9upRBYs-lrxTpNg; locale=en_US; c_user=1043357436; csm=2; s=Aa4WJodvHs5R5wLK.BRZp1F; xs=62%3AcuuTAFTPbZ13rQ%3A2%3A1365679429; p=52; presence=EM365693114EuserFA21043357436A2EstateFDsb2F0Et2F_5b_5dElm2FnullEuct2F1365678831BEtrFA2loadA2EtwF2660611652EatF1365693068247G365693114430CEchFDp_5f1043357436F66CC; act=1365692630561%2F19%3A2; sub=268435456";
+        String cookieString = "lu=ggtRCpMl-Ye1ccvIMjw; datr=0EJUUnWT3sc0PDiZcQ5SPM0F; sub=-1; act=1383462299930%2F6; x-referer=%2Fmessages%2Fread%2F%3Ftid%3Dmid.1371050920324%253Aba68fe15187af0c602%26refid%3D8%26pos%3D3%23%2Fhome.php%3Fsoft%3Djewel%253D1%26__user%3D1043357436; c_user=1043357436; csm=2; fr=0KsgoPE93Ucw7weAU.AWXy0Xq1GsGzInmQKH3xnUIs9aA.BSVELa.CS.FJw.AWVKVBEu; s=Aa6-1pgvjYMEteqZ.BSVELa; xs=118%3AQYsHGVsohFGL9w%3A2%3A1381253850%3A17170; p=123; presence=EM383836477EuserFA21043357436A2EstateFDsb2F1383447598361Et2F_5b_5dElm2FnullEuct2F1383835784BEtrFnullEtwF1210702777EatF1383836476462EwmlFDfolderFA2inboxA2Ethread_5fidFA2user_3a1B00398169425A2CG383836477309CEchFDp_5f1043357436F139CC";
+        
+        String[] nameValue = cookieString.split("\\;\\ ");
+        for (String s : nameValue) {
+            String key = s.split("\\=")[0];
+            String val = s.split("\\=")[1];
+            wc.getCookieManager().addCookie(new Cookie("facebook.com", key, val));
+        }
+    }
+}
