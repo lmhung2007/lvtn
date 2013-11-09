@@ -51,21 +51,21 @@ public class draw1 extends ApplicationFrame {
      */
     private static CategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(32.4, "Series 1", "Category 1");
-        dataset.addValue(17.8, "Series 2", "Category 1");
-        dataset.addValue(27.7, "Series 3", "Category 1");
-        dataset.addValue(43.2, "Series 1", "Category 2");
-        dataset.addValue(15.6, "Series 2", "Category 2");
-        dataset.addValue(18.3, "Series 3", "Category 2");
-        dataset.addValue(23.0, "Series 1", "Category 3");
-        dataset.addValue(11.3, "Series 2", "Category 3");
-        dataset.addValue(25.5, "Series 3", "Category 3");
-        dataset.addValue(13.0, "Series 1", "Category 4");
-        dataset.addValue(11.8, "Series 2", "Category 4");
-        dataset.addValue(29.5, "Series 3", "Category 4");
-        dataset.addValue(13.0, "Series 1", "Category 5");
-        dataset.addValue(11.8, "Series 2", "Category 5");
-        dataset.addValue(29.5, "Series 3", "Category 5");
+        dataset.addValue(1, "Series 1", "Category 1");
+        dataset.addValue(1, "Series 2", "Category 1");
+        dataset.addValue(1, "Series 3", "Category 1");
+        dataset.addValue(43, "Series 1", "Category 2");
+        dataset.addValue(15, "Series 2", "Category 2");
+        dataset.addValue(18, "Series 3", "Category 2");
+        dataset.addValue(23, "Series 1", "Category 3");
+        dataset.addValue(11, "Series 2", "Category 3");
+        dataset.addValue(25, "Series 3", "Category 3");
+        dataset.addValue(13, "Series 1", "Category 4");
+        dataset.addValue(11, "Series 2", "Category 4");
+        dataset.addValue(29, "Series 3", "Category 4");
+        dataset.addValue(13, "Series 1", "Category 5");
+        dataset.addValue(11, "Series 2", "Category 5");
+        dataset.addValue(29, "Series 3", "Category 5");
         return dataset;
     }
     /**
@@ -134,8 +134,7 @@ public class draw1 extends ApplicationFrame {
 		// TODO Auto-generated method stub
 		draw1 demo = new draw1(
                 "Stacked Bar Chart Demo 7");
-		
-		
+			
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);
